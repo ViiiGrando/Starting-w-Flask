@@ -1,14 +1,19 @@
-from flask import Flask,render_template 
+from flask import Flask,render_template,request 
 class Game:
         def __init__(self, name, category, console):
                 self.name = name
                 self.category = category
                 self.console = console
-                pass
+                
 
-        def __str__(self):
-          return f'{self.name} - {self.category} - {self.console}' #OR I can acess those attributes at html code , like 
-                                                                   #<td>{{game.name}}</td>...
+game1 = Game ('God of War', 'History','Play Station')
+game2 = Game ('Counter Strike', 'FPS', 'Computer')
+listgames = [game1 , game2]                
+
+'''def __str__(self):
+          ret1 = f'{self.name}    -    {self.category}   -    {self.console}'
+          return ret1.ljust(32) #OR I can acess those attributes at html code , like 
+                                                                   #<td>{{game.name}}</td>...'''
 
 
 app = Flask(__name__)
@@ -21,10 +26,28 @@ app = Flask(__name__)
 
 @app.route('/home')
 def hello(): 
-        game1 = Game ('God of War', 'History','Play Station')
-        game2 = Game ('Counter Strike', 'FPS', 'Computer')
-        games = [game1 , game2]
-        return render_template('lists.html',title ='Games Library', list_game = games)
+        return render_template('lists.html',title ='Games Library', games = listgames)
+
+
+@app.route('/newgames') 
+def new_games():
+        return render_template('newgames.html',title = 'New Game')
+
+
+@app.route('/cratinnewgames')
+def creatin_new_games():
+        name = request.form['name']
+        category = request.form['category']
+        console = request.form['console']
+        game = Game(name, category,console)
+        game.append(listgames)
+        return render_template('lists.html', title = 'Games' , games = listgames)#returning to initial page
+
+
+
+
+
+
 
 app.run()
 #app.run(host='0.0.0.0', port=8080) |When I wanna  allow external access to the application I can use the HOST 0.0.0.0
