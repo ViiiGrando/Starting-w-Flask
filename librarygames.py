@@ -24,8 +24,8 @@ app = Flask(__name__)
         if I type /home after page link, I can acess my website
         '''
 
-@app.route('/home')
-def hello(): 
+@app.route('/')
+def index(): 
         return render_template('lists.html',title ='Games Library', games = listgames)
 
 
@@ -34,13 +34,14 @@ def new_games():
         return render_template('newgames.html',title = 'New Game')
 
 
-@app.route('/cratinnewgames')
+@app.route('/cratinnewgames', methods = ['POST', ])
 def creatin_new_games():
+        
         name = request.form['name']
         category = request.form['category']
         console = request.form['console']
         game = Game(name, category,console)
-        game.append(listgames)
+        listgames.append(game)
         return render_template('lists.html', title = 'Games' , games = listgames)#returning to initial page
 
 

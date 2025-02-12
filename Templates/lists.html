@@ -19,11 +19,11 @@
          </tr>
         </thead>
             <tbody>
-               {% for game in list_game %}
+               {% for game in games %}
             <tr>
-            <td>{{games.name}}</td>
-            <td style="padding: 10px;">{{games.category}}</td>
-            <td>{{games.console}}</td>
+            <td>{{game.name}}</td>
+            <td style="padding: 10px;">{{game.category}}</td>
+            <td>{{game.console}}</td>
             </tr>
             {% endfor %}
              </tbody>
