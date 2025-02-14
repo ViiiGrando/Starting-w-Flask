@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<!-- So, I created this file to reduce repeated code lines. You can repair that I crate a block
+naming it as content, so I can use this block in other files to connect them. --> 
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+  
+    <!-- 
+    
+                    href="{{ url_for('static', filename='bootstrap.css') }}"
+
+
+     Thus, the bootstrap.css file will be found, regardless of how many folders it 
+    is inserted within a complex hierarchy. As long as the file is in the "static" 
+    folder and the name is bootstrap.css, the function will find the URL that leads to it.-->
+
+
+    <title>Games Library</title>
+</head>
+<body>
+    <div class="container">
+      <div class="page-header">
+          <h1>{{ title }}</h1>
+      </div>
+      {%block content %} {% endblock %}
+      </div>
+    </body>
+</html>
+
+      

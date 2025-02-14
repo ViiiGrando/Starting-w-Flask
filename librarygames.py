@@ -24,7 +24,7 @@ app = Flask(__name__)
         if I type /home after page link, I can acess my website
         '''
 
-@app.route('/')
+@app.route('/')#as argument I can input this '/' to return initial page or load initial page 
 def index(): 
         return render_template('lists.html',title ='Games Library', games = listgames)
 
@@ -50,5 +50,5 @@ def creatin_new_games():
 
 
 
-app.run()
+app.run(debug=True)
 #app.run(host='0.0.0.0', port=8080) |When I wanna  allow external access to the application I can use the HOST 0.0.0.0
