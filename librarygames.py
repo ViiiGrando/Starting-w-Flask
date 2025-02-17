@@ -34,6 +34,22 @@ def new_games():
         return render_template('newgames.html',title = 'New Game')
 
 
+@app.route('/login')
+def login():
+        return render_template('login.html', title = 'Login')
+
+#AUTHENTICATION
+@app.route('/authenticate', methods = ['POST', ])
+def authenticate():
+        user = request.form['user']
+        password = request.form['password']
+        if user == 'admin' and password == 'admin':
+                return redirect('/newgames')
+        else:
+                return redirect('/login')
+
+
+#CREATING NEW GAMES
 @app.route('/cratinnewgames', methods = ['POST', ])
 def creatin_new_games():
         
