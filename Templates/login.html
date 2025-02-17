@@ -8,6 +8,19 @@
   </head>
   <body>
     <div class="container">
+ 
+     <!--This code will ensure that the login message appears-->
+          {% with messages = get_flashed_messages() %}
+                {% if messages %} 
+                  <ul id="messages" class="list-unstyled">
+                      {% for message in messages %}
+                        <li class="alert alert-success">{{ message }}</li>
+                      {% endfor %}
+                   </ul>
+                {% endif %}
+          {% endwith %}
+
+<!-- código omitido -->
         <h1>Login</h1>
         <form method="POST" action="/authenticate">
             <p><label>User's Name:</label> <input class="form-control" type="text" name="user" required></p>
