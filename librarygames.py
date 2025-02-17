@@ -40,12 +40,12 @@ def login():
         return render_template('login.html', title = 'Login')
 
 
-@app.route('/authenticate', methods = ['POST', ]) #AUTHENTICATION
+@app.route('/authenticat e', methods = ['POST', ]) #AUTHENTICATION
 def authenticate():
         user = request.form['user']
         password = request.form['password']
         if user == 'admin' and password == 'admin':
-                session['user_logged'] =request.form['user'] #which information I wanna store in session
+                session['user_logged'] =request.form['user'] #which information I wanna store in session 'user_logged' is a list
                 
                 flash(session['user_logged'] + 'logged successfully')
                 ''' FLASH is a function 
