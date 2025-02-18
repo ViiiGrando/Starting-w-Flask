@@ -39,6 +39,13 @@ def new_games():
 def login():
         return render_template('login.html', title = 'Login')
 
+@app.route('/logout')
+def logout():   
+        session['user_logged'] = None #Sesion will be cleared
+        flash('Sucessfully logged out')
+        return redirect('/')
+
+
 
 @app.route('/authenticat e', methods = ['POST', ]) #AUTHENTICATION
 def authenticate():
