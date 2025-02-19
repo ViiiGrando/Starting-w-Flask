@@ -32,28 +32,32 @@ def index():
 
 @app.route('/newgames') 
 def new_games():
+        if 'user_logged' not in session or session['user_logged'] == None:
+                return redirect('/login?next=newgames') #redirecting the last page that the user was
         return render_template('newgames.html',title = 'New Game')
 
 
 @app.route('/login')
 def login():
-        return render_template('login.html', title = 'Login')
+        next = request.args.get('next') #I can get the next page that the user wants to access
+        return render_template('login.html', title = 'Login', next=next)#sending our informations of next page to html 
+                                                                        #code 
+        
 
 @app.route('/logout')
 def logout():   
         session['user_logged'] = None #Sesion will be cleared
         flash('Sucessfully logged out')
-        return redirect('/')
+        return redirect('/logout')
 
 
 
-@app.route('/authenticat e', methods = ['POST', ]) #AUTHENTICATION
+@app.route('/authenticate', methods = ['POST' ]) #AUTHENTICATION
 def authenticate():
         user = request.form['user']
         password = request.form['password']
         if user == 'admin' and password == 'admin':
                 session['user_logged'] =request.form['user'] #which information I wanna store in session 'user_logged' is a list
-                
                 flash(session['user_logged'] + 'logged successfully')
                 ''' FLASH is a function 
                 that shows a  fast message into users screen
@@ -63,7 +67,8 @@ def authenticate():
                 If I don't store the information in the session when the user has logged, the success message will still be displayed, 
                 but you won't have access to the user's name in other parts of the application, 
                 which can be a problem I you want to personalize the user's experience or check whether the user is logged in.'''
-                return redirect('/newgames')
+                next_page = request.form['next']
+                return redirect('/{}'.format(next_page  ))#redirecting the last page that the user was
         else:
                 flash('Invalid user or password, try again')
                 return redirect('/login')

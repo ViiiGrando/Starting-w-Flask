@@ -20,9 +20,10 @@
                 {% endif %}
           {% endwith %}
 
-<!-- código omitido -->
         <h1>Login</h1>
-        <form method="POST" action="/authenticate">
+        <form action="/authenticate" method="POST" >
+            <input type="hidden" name="next" value="{{ next }}">
+            <!-- this code above, will get the last page that user was trying to acess -->
             <p><label>User's Name:</label> <input class="form-control" type="text" name="user" required></p>
             <p><label>Password:</label> <input class="form-control" type="password" name="password" required></p>
             <p><button class="btn btn-primary" type="submit">Sign in</button></p>
