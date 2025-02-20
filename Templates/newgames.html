@@ -1,6 +1,6 @@
  {% extends "template.html" %}
  {% block content %}
-      <form action = "/cratinnewgames" method = "post" >
+      <form action = "{{url_for('creatin_new_games')}}" method = "post" >
         <!-- identifier, action must contain  the route to the page that is been worked-->
         <!-- and the identifier action must contain the value "post" if I wanna the flask server  
          return a value for the website-->

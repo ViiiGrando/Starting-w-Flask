@@ -1,11 +1,7 @@
-<!DOCTYPE html>
+{% extends "template.html" %}
+{% block content %}
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Games Library</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-  </head>
+  
   <body>
     <div class="container">
  
@@ -21,7 +17,7 @@
           {% endwith %}
 
         <h1>Login</h1>
-        <form action="/authenticate" method="POST" >
+        <form action="{{url_for('authenticate')}}" method="POST" >
             <input type="hidden" name="next" value="{{ next }}">
             <!-- this code above, will get the last page that user was trying to acess -->
             <p><label>User's Name:</label> <input class="form-control" type="text" name="user" required></p>
@@ -31,3 +27,4 @@
     </div>
 </body>
 </html>
+{% endblock %}
