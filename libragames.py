@@ -1,4 +1,6 @@
 from flask import Flask,render_template,request,redirect,session, flash, url_for
+from flask_sqlalchemy import SQLAlchemy
+
 class Game:
         def __init__(self, name, category, console):
                 self.name = name
@@ -35,6 +37,17 @@ users = {
 
 app = Flask(__name__)
 app.secret_key = 'ONE PIECE > NARUTO' #key to encrypt session data
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:admin@localhost/libragames'.format(
+       SMDB= 'mysql + mysqlconnector',
+       user = 'root',
+       password = 'admin',
+       host = 'localhost',
+       database = 'libragames'             
+
+        ) #linking the database to my application
+
+db = SQLAlchemy(app) #linking sqlalchemy in my application
 
 '''telling Flask that when someone accesses the *home* URL, the hello()
         function should be called, and what this function returns will be displayed in the browser
